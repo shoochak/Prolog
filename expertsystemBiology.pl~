@@ -1,0 +1,50 @@
+go:-
+    hypothesis(Reply),nl,
+    write('I BELIEVE THE BIOLOGICAL ORGANISM IS '),
+    write(Reply),
+    nl,
+    undo.
+
+%HYPOTHESIS OF FOLLOWING ORGANISMS.
+hypothesis(vertibrate_classes_mammals):- vertibrate_classes_mammals,!.
+hypothesis(vertibrate_classes_birds):- vertibrate_classes_birds,!.
+hypothesis(vertibrate_classes_reptiles):- vertibrate_classes_reptiles,!.
+hypothesis(vertibrate_classes_fishes):- vertibrate_classes_fishes,!.
+hypothesis(vertibrate_classes_amphibians).
+
+%VERIFICATION OF RESPECTIVE HYPOTHESIS.
+vertibrate_classes_mammals:- verify(has_far).
+vertibrate_classes_birds:- verify(has_feathers).
+vertibrate_classes_reptiles:- verify(external_fertilization).
+vertibrate_classes_fishes:- verify(has_gills).
+
+%HOW TO ASK QUESTIONS?
+ask(Question):-
+    nl,write('IS THE ORGHANISM '),write(Question),write(' ? '),
+    read(Response),nl,
+    (   (Response == y ; Response == yes)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING?
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no ASSERTIONS.
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
+
+
+
