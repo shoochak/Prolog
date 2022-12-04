@@ -1,5 +1,5 @@
 # Prolog
-## also exercising prolog through python
+## also exercising prolog through python (comming soon)
 #### RUN Prolog IN WINDOWS OPERATING SYSTEM
 ##### STEP 1--->>  DOWNLOAD FROM [https://www.swi-prolog.org/download/stable/bin/swipl-8.0.3-1.x64.exe.envelope]
 ##### STEP 2--->>  INSTALL  [SWI-Prolog version (Multi-threaded, AMD64 bits, version 8.0.3)]
