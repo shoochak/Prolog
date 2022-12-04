@@ -1,0 +1,87 @@
+go:- hypothesis(Bird),nl,
+    write('I BELIEVE THE BIRD IS '),
+    write(Bird),
+    nl,
+    undo.
+
+%HYPOTHESIS OF FOLLOWING BIRDS.
+hypothesis(laysan_albatross):- laysan_albatross,!.
+hypothesis(black_footed_albatross):- black_footed_albatross,!.
+hypothesis(whistling_swan):- whistling_swan,!.
+hypothesis(trumpeter_swan):- trumpeter_swan,!.
+hypothesis(canada_goose):- canada_goose,!.
+hypothesis(canada_goose):- canada_goose,!.
+hypothesis(mallard):- mallard,!.
+hypothesis(mallard):- mallard,!.
+hypothesis(unknown).%UNKNOWN.
+
+%VERIFICATIONS OF RESPECTIVE HYPOTHESIS.
+laysan_albatross:-
+    verify(albatross),
+    verify(white).
+
+black_footed_albatross:-
+    verify(albatross),
+    verify(dark).
+
+whistling_swan:-
+    verify(swan),
+    verify(muffled_musical_whistle).
+
+trumpeter_swan:-
+    verify(swan),
+    verify(loud_trumpeting).
+
+canada_goose:-
+    verify(family_goose),
+    verify(season_winter),
+    verify(country_united_states),
+    verify(head_black),
+    verify(cheek_white).
+
+canada_goose:-
+    verify(family_goose),
+    verify(season_summer),
+    verify(country_canada),
+    verify(head_black),
+    verify(cheek_white).
+
+mallard:-
+    verify(family_duck),
+    verify(voice_quack),
+    verify(head_green).
+
+
+
+
+%HOW TO ASK QUESTIONS.
+ask(Question):-
+    nl,
+    write('DOES THE BIRD HAVE THE FOLLOWING SIMPTOM? '),
+    write(Question),
+    write(' ?'),
+    read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING.
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no assertions
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
