@@ -18,6 +18,7 @@
 - STEP 10--->> COPY AND PASTE INTO "*.pl" THE PROLOG CODE FROM MY Github THEN, SAVE
 ![STEP10](https://user-images.githubusercontent.com/118433479/205476627-a6bc07d8-9166-48aa-b3db-c19e7364654f.jpg)
 ![STEP10_1](https://user-images.githubusercontent.com/118433479/205477145-ea5acd4b-66f6-40ab-82e8-db8cefcf5a7d.jpg)
+![STEP10_2](https://user-images.githubusercontent.com/118433479/205477325-04b13ade-4515-4a67-8d69-bfeecbf4377b.jpg)
 - STEP 11--->> GOTO MENUS ON TOP TO File-->Consult-->[SELECT THE "*.pl" FILE FROM LIST]-->Open
 - STEP 12--->> TYPE "go."[EVERYTHING MUST BE IN LOWER CASE FOLLOWED BY DOT(.) NO INTERMEDIATE SPACE ALLOWED] THEN PRESS "Enter"
 - STEP 13--->> MUST TYPE EITHER ["y."/"yes."] OR ["n."/"no."] IN LOWER CASE ONLY,.... TO KEEP ANSWERING 
