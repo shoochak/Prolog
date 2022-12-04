@@ -11,6 +11,7 @@
 - STEP 7--->>  SWI PROLOG (SHELL) API STARTS RUNNING
 ![STEP7](https://user-images.githubusercontent.com/118433479/205475676-202fe673-e6a4-4652-856e-d20504ab14c4.jpg)
 - STEP 8--->>  GOTO MENUS ON TOP TO File-->New-->File name:[TYPE YOUR FILE NAME OF THE PROLOG PROGRAM]-->Save as type:[Prolog Source] THEN PRESS "Enter"
+![STEP8](https://user-images.githubusercontent.com/118433479/205475784-31b5052e-fb17-4f62-ab08-46dc79f4c8fc.jpg)
 - STEP 9--->>  WAIT,.... & A NEW WINDOW WILL RISE UP WITH YOUR GIVEN FILE NAME "*.pl" DISPLAYED ON THE TOP LEFT CORNER
 - STEP 10--->> COPY AND PASTE INTO "*.pl" THE PROLOG CODE FROM MY Github THEN, SAVE
 - STEP 11--->> GOTO MENUS ON TOP TO File-->Consult-->[SELECT THE "*.pl" FILE FROM LIST]-->Open
