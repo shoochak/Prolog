@@ -25,5 +25,6 @@
 ![STEP11](https://user-images.githubusercontent.com/118433479/205659852-169ba7a7-758d-45c8-8150-a18cda65c606.jpg)
 - STEP 11--->> GOTO MENUS ON TOP TO File-->Consult-->[SELECT THE "*.pl" FILE FROM LIST]-->Open
 ![STEP12](https://user-images.githubusercontent.com/118433479/205660902-9f2e8390-703f-4f57-8920-9228cbb459a2.jpg)
+![STEP13](https://user-images.githubusercontent.com/118433479/205662791-446e73c0-205d-47c9-bd06-82d1a328dc98.jpg)
 - STEP 12--->> TYPE "go."[EVERYTHING MUST BE IN LOWER CASE FOLLOWED BY DOT(.) NO INTERMEDIATE SPACE ALLOWED] THEN PRESS "Enter"
 - STEP 13--->> MUST TYPE EITHER ["y."/"yes."] OR ["n."/"no."] IN LOWER CASE ONLY,.... TO KEEP ANSWERING 
