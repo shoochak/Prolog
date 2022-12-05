@@ -1,0 +1,66 @@
+go:- hypothesis(Problem),
+    write('I BELIEVE '),nl,
+    write(Problem),
+    nl,
+    undo.
+
+%HYPOTHESIS OF PROBLEMS.
+hypothesis(problem_is_battery):- problem_is_battery,!.
+hypothesis(problem_is_flooded):- problem_is_flooded,!.
+hypothesis(problem_is_out_of_gas):- problem_is_out_of_gas,!.
+
+
+%VERIFICATION OF HYPOTHESIS.
+problem_is_battery:-
+    verify(lights_weak),
+    verify(radio_weak),
+    verify(battery_bad).
+
+problem_is_flooded:-
+    verify(turn_over),
+    verify(smell_gas).
+
+problem_is_out_of_gas:-
+    verify(turn_over),
+    verify(gas_gauge_is_empty).
+
+problem_is_out_of_gas:-
+    verify(turn_over),
+    verify(gas_gauge_is_low).
+
+%HOW TO ASK QUESTION.
+ask(Question):-
+    nl,
+    write('DOES THE CAR HAVE FOLLOWING SIMPTOM '),
+    write(Question),
+    write('?'),
+    read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING?
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no assertions.
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
+
+
+
+
+
