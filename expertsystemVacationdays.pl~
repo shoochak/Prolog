@@ -1,0 +1,50 @@
+go:-
+    hypothesis(Days),nl,
+    write('DESERVING NUMBER OF VACATION DAYS IS '),
+    write(Days),
+    nl,
+    undo.
+
+%HYPOTHESIS OF FOLLOWING VACATION DAYS
+hypothesis(thirty):- thirty,!.
+hypothesis(twenty_seven):- twenty_seven,!.
+hypothesis(twenty_four):- twenty_four,!.
+hypothesis(twenty_two).
+
+
+%VERIFICATION OF RESPECTIVE HYPOTHESIS
+thirty:-
+    verify(employee_age_greater_than_or_equalto_sixty);
+    verify(employee_years_of_service_greater_than_or_equalto_thirty).
+
+twenty_seven:-
+    verify(employee_age_less_than_eighteen).
+
+twenty_four:-
+    (verify(employee_years_of_service_greater_than_or_equalto_fifteen),
+     verify(employee_years_of_service_greater_than_thirty));
+    verify(employee_age_greater_than_or_equalto_fortyfive).
+
+%HOW TO ASK QUESTIONS
+ask(Question):-
+    nl,
+    write('IS THE '),write(Question),write(' ?'),
+    read(Response),
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+
