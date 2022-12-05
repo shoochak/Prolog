@@ -1,0 +1,64 @@
+go:- hypothesis(Reply),nl,
+    write('I BELIEVE '),
+    write(Reply),
+    nl,
+    undo.
+
+%HYPOYHESIS FOR DIAGNOSIS.
+hypothesis(printer_doesnot_print):- printer_doesnot_print,!.
+hypothesis(a_red_light_is_flashing):- a_red_light_is_flashing,!.
+hypothesis(printer_is_unrecognized).
+
+
+%VERIFY SIMPTOMS.
+printer_doesnot_print:-
+    verify(check_the_power_cable),
+    verify(check_the_usb_cable),
+    verify(ensure_driver_software_installed),
+    verify(check_or_replace_ink_cartridge),
+    verify(check_for_paper_jam).
+
+a_red_light_is_flashing:-
+    verify(check_the_usb_cable),
+    verify(ensure_driver_software_installed),
+    verify(check_or_replace_ink_cartridge).
+
+printer_is_unrecognized:-
+    verify(check_the_power_cable),
+    verify(check_the_usb_cable),
+    verify(ensure_driver_software_installed),
+    verify(check_or_replace_ink_cartridge).
+
+%HOW TO ASK QUESTION?
+ask(Question):-
+    nl,
+    write('HAVE YOU '),
+    write(Question),
+    write(' ?'),
+    read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING?
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no ASSERTIONS.
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
+
+

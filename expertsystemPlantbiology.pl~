@@ -1,0 +1,179 @@
+go:-
+    hypothesis(Reply),
+    nl,write('I BELIEVE THE PLANT BIO-ORGANISM IS '),
+    write(Reply),
+    nl,
+    undo.
+
+%HYPOTHESIS OF BIOLOGICAL PLANTS.
+hypothesis(giant_sequoia):- giant_sequoia,!.
+hypothesis(incense_cedar):- incense_cedar,!.
+hypothesis(redcedar):- redcedar,!.
+hypothesis(cypress):- cypress,!.
+hypothesis(white_cedar):- white_cedar,!.
+hypothesis(juniper):- juniper,!.
+hypothesis(giant_sequoia):- giant_sequoia,!.
+hypothesis(true_fir):- true_fir,!.
+hypothesis(douglas_fir):- douglas_fir,!.
+hypothesis(hemlock):- hemlock,!.
+hypothesis(spruce):- spruce,!.
+hypothesis(cedar):- cedar,!.
+hypothesis(larch):- larch,!.
+hypothesis(angiosperms):- angiosperms,!.
+hypothesis(gymnosperms):- gymnosperms,!.
+hypothesis(pteridophytes):- pteridophytes,!.
+hypothesis(bryophytes):- bryophytes,!.
+hypothesis(algae):- algae,!.
+
+
+%VERIFICATION OF EACH HYPOTHESIS.
+larch:-
+    verify(leaves_soft),
+    verify(clusters_greater_than_ten),
+    verify(leaves_clustered),
+    verify(leaves_needle_like),
+    verify(evergreen_or_coniferous_tree).
+
+
+
+cedar:-
+    verify(leaves_stiff),
+    verify(clusters_greater_than_ten),
+    verify(leaves_clustered),
+    verify(leaves_needle_like),
+    verify(evergreen_or_coniferous_tree).
+
+
+
+spruce:-
+    verify(pegs_square_needles_sharp),
+    verify(tiny_pegs_on_twigs),
+    verify(needles_longer_than_half_diameter),
+    verify(leaves_not_clustered),
+    verify(leaves_needle_like),
+    verify(evergreen_or_coniferous_tree).
+
+hemlock:-
+    verify(pegs_rounded_needles_blunt),
+    verify(tiny_pegs_on_twigs),
+    verify(needles_longer_than_half_diameter),
+    verify(leaves_not_clustered),
+    verify(leaves_needle_like),
+    verify(evergreen_or_coniferous_tree).
+
+douglas_fir:-
+    verify(buds_large_pointed),
+    verify(no_pegs_on_twigs),
+    verify(needles_longer_than_half_diameter),
+    verify(leaves_not_clustered),
+    verify(leaves_needle_like),
+    verify(evergreen_or_coniferous_tree).
+
+
+
+true_fir:-
+    verify(buds_not_large_pointed),
+    verify(no_pegs_on_twigs),
+    verify(needles_longer_than_half_diameter),
+    verify(leaves_not_clustered),
+    verify(leaves_needle_like),
+    verify(evergreen_or_coniferous_tree).
+
+
+giant_sequoia:-
+    verify(needles_short_and_sharp),
+    verify(leaves_not_clustered),
+    verify(leaves_needle_like),
+    verify(evergreen_or_coniferous_tree).
+
+
+juniper:-
+    verify(cones_soft_and_leathery),
+    verify(cones_round),
+    verify(some_leaves_not_sharp),
+    verify(leaves_flattened_and_scale_like),
+    verify(evergreen_or_coniferous_tree).
+
+
+white_cedar:-
+    verify(cones_less_than_half_diameter),
+    verify(cones_are_woody),
+    verify(cones_round),
+    verify(some_leaves_not_sharp),
+    verify(leaves_flattened_and_scale_like),
+    verify(evergreen_or_coniferous_tree).
+
+cypress:-
+    verify(cones_more_than_half_diameter),
+    verify(cones_are_woody),
+    verify(cones_round),
+    verify(some_leaves_not_sharp),
+    verify(leaves_flattened_and_scale_like),
+    verify(evergreen_or_coniferous_tree).
+
+redcedar:-
+    verify(cones_resemble_rosebuds),
+    verify(cones_not_round),
+    verify(some_leaves_not_sharp),
+    verify(leaves_flattened_and_scale_like),
+    verify(evergreen_or_coniferous_tree).
+
+
+incense_cedar:-
+    verify(cones_resemble_duckbills),
+    verify(cones_not_round),
+    verify(some_leaves_not_sharp),
+    verify(leaves_flattened_and_scale_like),
+    verify(evergreen_or_coniferous_tree).
+
+giant_sequoia:-
+    verify(all_leaves_short_and_sharp),
+    verify(leaves_flattened_and_scale_like),
+    verify(evergreen_or_coniferous_tree).
+
+angiosperms:-
+    verify(roots_and_stems),verify(seeds),verify(flowers).
+
+gymnosperms:-
+    verify(roots_and_stems),verify(seeds),not(verify(flowers)).
+
+pteridophytes:-
+    verify(roots_and_stems),not(verify(seeds)).
+
+bryophytes:-
+    not(verify(roots_and_stems)),verify(leaves).
+
+algae:-
+    not(verify(roots_and_stems)),not(verify(leaves)).
+
+
+%HOW TO ASK QUESTIONS?
+ask(Question):-
+    nl,
+    write('ARE THERE '),write(Question),write(' ? '),
+    read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY?
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
+
+

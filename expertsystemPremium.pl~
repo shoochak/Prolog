@@ -1,0 +1,27 @@
+go:- hypothesis(Reply),nl,
+    write('SHOULD BE '),
+    write(Reply),nl,
+    undo.
+
+%HYPOTHESIS TO BE PROVED.
+hypothesis(normal_premium):- normal_premium,!.
+hypothesis(loaded_premium):- loaded_premium,!.
+hypothesis(insurance_refused).
+
+%VERIFICATION OF HYPOTHESIS.
+normal_premium:-
+    verify(age_atleast_25_years),
+    verify(clean_license),
+    verify(blame_free_accident_record_for_atleast_2_years).
+
+loaded_premium:-
+    (   verify(age_atleast_25_years),
+    not(verify(clean_license)),
+    verify(blame_free_accident_record_for_atleast_2_years));
+    (   not(verify(age_atleast_25_years)),
+    verify(clean_license),
+    verify(blame_free_accident_record_for_atleast_2_years)).
+
+
+
+

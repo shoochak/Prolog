@@ -1,0 +1,31 @@
+go:- hypothesis(Reply),nl,
+    write('I BELIEVE THE PERSON '),
+    write(Reply),
+    nl,
+    undo.
+
+%HYPOTHESIS FOR JUDGEMENT.
+hypothesis(can_subscribe):- can_subscribe,!.
+hypothesis(can_not_subscribe).%CAN NOT SUBSCRIBE.
+
+can_subscribe:-
+    verify(has_a_bank_or_building_society_account),
+    verify(lived_at_same_address_atleast_one_year),
+    verify(is_a_home_owner).
+
+%HOW TO ASK QUESTIONS?
+ask(Question):-
+    nl,
+    write('IS THE PERSON '),
+    write(Question),
+    write(' ?'),
+    read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+

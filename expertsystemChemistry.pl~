@@ -1,0 +1,51 @@
+go:- hypothesis(Response),nl,
+    write('I BELIEVE YOU SHOULD '),
+    write(Response),
+    nl,
+    undo.
+
+%HYPOTHESIS TO CONSIDER.
+hypothesis(accept_request):- accept_request,!.
+hypothesis(regect_request).%REQUEST REJECTED.
+
+%VERIFY SIMPTOMS.
+accept_request:-
+    verify(requester_is_authorized),
+    verify(chemical_is_available),
+    verify(chemical_is_not_hazardous),
+    verify(requester_is_trained).
+
+%ASK QUESTIONS.
+ask(Question):-
+    nl,
+    write('IS '),
+    write(Question),
+    write(' ?'),
+    read(Reply),
+    nl,
+    (   (Reply == yes ; Reply == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING?
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no ASSERTIONS.
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
+
+
+

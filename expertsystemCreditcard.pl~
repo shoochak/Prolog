@@ -1,0 +1,63 @@
+go:- hypothesis(Reply),nl,
+    write('I BELIEVE YOU SHOULD '),
+    write(Reply),
+    nl,
+    undo.
+
+%HYPOTHESIS TO PROVE.
+hypothesis(call_cardholder):- call_cardholder,!.
+hypothesis(call_vendor):- call_vendor,!.
+hypothesis(call_cardholder_and_vendor):- call_cardholder_and_vendor,!.
+hypothesis(approve).
+
+%VERIFY HYPOTHESIS.
+call_cardholder:-
+    (   verify(real_account),verify(active_account),verify(within_limit),not(verify(location_ok)));
+    (   verify(real_account),verify(active_account),not(verify(within_limit)),verify(location_ok));
+    (   verify(real_account),verify(active_account),not(verify(within_limit)),not(verify(location_ok))).
+
+call_cardholder_and_vendor:-
+    (   verify(real_account),not(verify(active_account)),verify(within_limit),not(verify(location_ok)));
+    (   verify(real_account),not(verify(active_account)),not(verify(within_limit)),verify(location_ok));
+    (   verify(real_account),not(verify(active_account)),not(verify(within_limit)),not(verify(location_ok))).
+
+
+call_vendor:-
+    (   verify(real_account),not(verify(active_account)),verify(within_limit),verify(location_ok));
+    (   not(verify(real_account)),verify(active_account),verify(within_limit),verify(location_ok));
+    (   not(verify(real_account)),verify(active_account),verify(within_limit),not(verify(location_ok)));
+    (   not(verify(real_account)),verify(active_account),not(verify(within_limit)),verify(location_ok));
+    (   not(verify(real_account)),verify(active_account),not(verify(within_limit)),not(verify(location_ok)));
+    (   not(verify(real_account)),not(verify(active_account)),verify(within_limit),verify(location_ok));
+    (   not(verify(real_account)),not(verify(active_account)),verify(within_limit),not(verify(location_ok)));
+    (   not(verify(real_account)),not(verify(active_account)),not(verify(within_limit)),verify(location_ok));
+    (   not(verify(real_account)),not(verify(active_account)),not(verify(within_limit)),not(verify(location_ok))).
+
+%HOW TO ASK QUESTION?
+ask(Question):-
+    nl,
+    write('IS '),write(Question),write(' ?'),read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assery(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING?
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no ASSERTIONS.
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+

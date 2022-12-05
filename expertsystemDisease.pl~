@@ -1,0 +1,123 @@
+go:- hypothesis(Disease),nl,
+    write('I BELIEVE YOU HAVE THE DISEASE '),
+    write(Disease),
+    nl,
+    undo.
+
+
+%HYPOTHESIS THAT SHOULD BE TESTED___________________________________
+hypothesis(cold):-cold,!.
+hypothesis(flu):-flu,!.
+hypothesis(ebola):-ebola,!.
+hypothesis(measles):-measles,!.
+hypothesis(arthritis):-arthritis,!.
+hypothesis(poliomyelitis):-poliomyelitis,!.
+hypothesis(chicken_pox):-chicken_pox,!.
+hypothesis(rabies):-rabies,!.
+hypothesis(hepatitis):-hepatitis,!.
+hypothesis(influenza):-influenza,!.
+hypothesis(dengue):-dengue,!.
+hypothesis(unknown).%UNKNOWN.
+
+
+%HYPOTHESIS IDENTIFICATION RULES_____________________________________
+cold:-
+    verify(headache),
+    verify(runny_nose),
+    verify(sneezing),
+    verify(sore_throat).
+
+flu:-
+    verify(fever),
+    verify(headache),
+    verify(chills),
+    verify(body_ache).
+
+ebola:-
+    verify(headache),
+    verify(rash),
+    verify(nausea),
+    verify(bleeding).
+
+
+measles:-
+    verify(fever),
+    verify(runny_nose),
+    verify(rash),
+    verify(conjunctivitis),
+    verify(small_white_patches_in_mouth_and_throat).
+
+arthritis:-
+    verify(pain_in_joints),
+    verify(stiffness_in_joints),
+    verify(fatigue).
+
+chicken_pox:-
+    verify(loss_of_appetite),
+    verify(dark_red_coloured_rash_on_the_back_and_chest_which_spreads_on_the_whole_body_later_rashes_change_into_vesicles),verify(after_few_days_these_vesicles_start_drying_up_and_scabs_crusts_are_formed),verify(these_scabs_start_falling_infective_stage),verify(fever),verify(headache).
+
+poliomyelitis:-
+    verify(virus_multiplies_in_intestinal_cells_and_then_reaches_the_brain_through_blood),verify(damages_brain_and_nerves_and_causes_infantile_paralysis),verify(stiffness_of_neck_and_fever_and_loss_of_head_support).
+
+rabies:-
+    verify(severe_headache_and_high_fever),
+    verify(painful_contraction_of_muscles_of_throat_and_chest),
+    verify(choking_and_fear_of_water_leading_to_death).
+
+hepatitis:-
+    verify(bodyache),verify(loss_of_appetite_and_nausea),
+    verify(eyes_and_skin_become_yellowish_and_urine_deep_yellow_in_colour),
+    verify(enlarged_liver).
+
+influenza:-
+    verify(fever_100_to_103_ferenhit_even_more_in_children),
+    verify(cough),verify(sore_throat),verify(running_nose),
+    verify(headache),verify(pain_in_the_muscles),verify(extreme_fatigue).
+
+dengue:-
+    verify(sudden_rise_of_high_fever_generally_104_to_105_ferenhit_may_last_4_to_5_days),
+    verify(severe_headache_mostly_in_the_forehead),
+    verify(pain_in_the_joints_and_muscles_and_body_aches),
+    verify(pain_behind_the_eyes_which_worsens_with_eye_movement),
+    verify(nausea_or_vomiting).
+
+%HOW TO ASK QUESTIONS.
+ask(Question):-
+    nl,
+    write('DOES THE PATIENT HAVE THE FOLLOWING SIMPTOM? '),
+    write(Question),
+    write(' ?'),
+    read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING.
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no assertions
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
+
+
+
+
+
+
+
+
+
