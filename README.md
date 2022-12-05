@@ -21,7 +21,7 @@
 ![STEP10_2](https://user-images.githubusercontent.com/118433479/205477325-04b13ade-4515-4a67-8d69-bfeecbf4377b.jpg)
 - PRESS AND HOLD DOWN 'Ctrl' AND PRESS 'S' KEY THAT IS TO Save PRESS "Ctrl + S" 
 ![STEP10_3](https://user-images.githubusercontent.com/118433479/205477393-e688d6ff-a6af-4d15-b9e3-31234ac69a75.jpg)
-![STEP11](https://user-images.githubusercontent.com/118433479/205659122-aa183885-0010-4e0e-882a-163c33092de4.jpg)
+![STEP11](https://user-images.githubusercontent.com/118433479/205659852-169ba7a7-758d-45c8-8150-a18cda65c606.jpg)
 - STEP 11--->> GOTO MENUS ON TOP TO File-->Consult-->[SELECT THE "*.pl" FILE FROM LIST]-->Open
 - STEP 12--->> TYPE "go."[EVERYTHING MUST BE IN LOWER CASE FOLLOWED BY DOT(.) NO INTERMEDIATE SPACE ALLOWED] THEN PRESS "Enter"
 - STEP 13--->> MUST TYPE EITHER ["y."/"yes."] OR ["n."/"no."] IN LOWER CASE ONLY,.... TO KEEP ANSWERING 
