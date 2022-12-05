@@ -29,3 +29,4 @@
 - STEP 12--->> TYPE "go."[EVERYTHING MUST BE IN LOWER CASE FOLLOWED BY DOT(.) NO INTERMEDIATE SPACE ALLOWED] THEN PRESS "Enter"
 ![STEP14](https://user-images.githubusercontent.com/118433479/205664205-2e372d70-430c-4935-ad52-0270106a4c58.jpg)
 - STEP 13--->> MUST TYPE EITHER ["y."/"yes."] OR ["n."/"no."] IN LOWER CASE ONLY,.... TO KEEP ANSWERING 
+![STEP15](https://user-images.githubusercontent.com/118433479/205665998-f7e35e52-ae70-4b4f-a08d-bd94b2390c9f.jpg)
