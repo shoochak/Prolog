@@ -1,0 +1,76 @@
+go:- hypothesis(Reply),nl,
+    write('I BELIEVE OUTPUT SHOULD BE '),
+    write(Reply),
+    nl,
+    undo.
+
+%HYPOTHESIS TO PROOVE.
+hypothesis(login_page):- login_page,!.
+hypothesis(home_page):- home_page,!.
+hypothesis(error).%HYPOTHESIS Error SELECTED.
+
+%VERIFY HYPOTHESIS.
+login_page:-
+    (   verify(blank_email),verify(blank_password))
+    ->
+    nl,write('output_message_error_please_enter_email'),nl;
+    (   verify(blank_email),verify(invalid_password))
+    ->
+    nl,write('output_message_error_please_enter_email'),nl;
+    (   verify(blank_email),verify(valid_password))
+    ->
+    nl,write('output_message_error_please_enter_email'),nl;
+    (   verify(invalid_email),verify(blank_password))
+    ->
+    nl,write('output_message_error_please_enter_a_valid_email'),nl;
+    (   verify(invalid_email),verify(invalid_password))
+    ->
+    nl,write('output_message_error_login_failed'),nl;
+    (   verify(invalid_email),verify(valid_password))
+    ->
+    nl,write('output_message_error_please_enter_a_valid_email'),nl;
+    (   verify(valid_email),verify(blank_password))
+    ->
+    nl,write('output_message_error_please_enter_password'),nl;
+    (   verify(valid_email),verify(invalid_password))
+    ->
+    nl,write('output_message_error_login_failed'),nl.
+
+home_page:-
+    (      verify(valid_email),verify(valid_password))
+    ->
+    nl,write('output_message_login_success'),nl.
+
+
+%HOW TO ASK QUESTION?
+ask(Question):-
+    nl,write('HAVE YOU ENTERED '),
+    write(Question),
+    write(' ?'),
+    read(Response),
+    nl,
+    (   (Response == yes ; Response == y)
+    ->
+    assert(yes(Question));
+    assert(no(Question)),fail).
+
+:- dynamic yes/1,no/1.
+
+%HOW TO VERIFY SOMETHING?
+verify(S):-
+    (   yes(S)
+    ->
+    true;
+    (   no(S)
+    ->
+    fail;
+    ask(S))).
+
+%UNDO ALL yes/no ASSERTIONS.
+undo:- retract(yes(_)),fail.
+undo:- retract(no(_)),fail.
+undo.
+
+
+
+
